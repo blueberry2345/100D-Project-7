@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafe Wifi Website</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    .navbar-brand{
+      color: white;
+    }
+  </style>
+
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <a class="navbar-brand" href="#">Navbar</a>
+    </nav>
+
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Map URL</th>
+      <th scope="col">Image</th>
+      <th scope="col">Location</th>
+      <th scope="col">Has Sockets</th>
+      <th scope="col">Has Toilets</th>
+      <th scope="col">Has Wi-fi</th>
+      <th scope="col">Can Take Calls</th>
+      <th scope="col">Seats</th>
+      <th scope="col">Price of Coffee</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+      {% for cafe in cafes %}
+      <tr>
+      <td>{{ cafe.name }}</td>
+          <td><a href = {{ cafe.map_url }}>Location</a></td>
+      <td><img src={{ cafe.picture_url }} width= 100 alt="Image of cafe"></td>
+      <td>{{ cafe.location }}</td>
+      <td>{{ cafe.has_sockets }}</td>
+      <td>{{ cafe.has_toilets }}</td>
+      <td>{{ cafe.has_wifi }}</td>
+      <td>{{ cafe.can_take_calls }}</td>
+      <td>{{ cafe.seats_num }}</td>
+      <td>{{ cafe.coffee_price }}</td>
+          <form action="remove_cafe"  method="POST">
+      <td><button type="submit" name="delete" value= {{ cafe.name }} >Delete Cafe</button></td>
+          </form>
+      </tr>
+
+  {% endfor %}
+
+  <form action="/add_cafe" method="post">
+
+  <tr>
+
+      <td><input id="name_entry"
+                 name="name_entry"
+                 type="text"
+                 placeholder="Enter name of new cafe..."
+      > </td>
+      <td><input id="map_entry"
+                 name="map_entry"
+                 type="url"
+                 placeholder="Enter URL location of new cafe..."
+      > </td>
+          <td> <input id="picture_entry"
+                 name="picture_entry"
+                 type="url"
+                 placeholder="Enter picture URL of new cafe..."
+      > </td>
+      <td> <input id="location_entry"
+                 name="location_entry"
+                 type="text"
+                 placeholder="Enter location of new cafe..."
+      > </td>
+      <td>
+          <div>
+          <label for="has_sockets">Yes</label>
+          <input id="has_sockets"
+                 name="sockets"
+                 type="radio"
+                 value=1
+      >
+      <label for="no_sockets">No</label>
+      <input     id="no_sockets"
+                 name="sockets"
+                 type="radio"
+                 value=0
+      >
+      </div>
+      </td>
+
+      <td>
+          <label for="has_toilets">Yes</label>
+          <input
+                 id="has_toilets"
+                 name="toilets"
+                 type="radio"
+                 value=1
+      >
+      <label for="no_toilets">No</label>
+      <input
+                 id="no_toilets"
+                 name="toilets"
+                 type="radio"
+                 value=0
+      >
+      </td>
+      <td>
+          <label for="has_wifi">Yes</label>
+          <input
+                 id="has_wifi"
+                 name="wifi"
+                 type="radio"
+                 value=1
+      >
+      <label for="no_wifi">No</label>
+      <input     id="no_wifi"
+                 name="wifi"
+                 type="radio"
+                 value=0
+      >
+      </td>
+      <td>
+          <label for="can_take_calls">Yes</label>
+          <input
+                 id="can_take_calls"
+                 name="calls"
+                 type="radio"
+                 value=1
+      >
+      <label for="cant_take_calls">No</label>
+      <input
+                 id="cant_take_calls"
+                 name="calls"
+                 type="radio"
+                 value=0
+      >
+      </td>
+      <td>
+          <input
+                 id="seats_num"
+                 name="seats"
+                 type="text"
+                 placeholder="Enter number of seats at cafe..."
+      ></td>
+      <td>
+          <input
+                 id="coffee_price"
+                 name="coffee"
+                 type="text"
+                 placeholder="Enter name of new cafe..."
+      >
+      </td>
+  </tr>
+
+      <td><button type="submit">Add Cafe</button></td>
+  </form>
+
+  </tbody>
+</table>
+
+  </body>
+
+</html>
